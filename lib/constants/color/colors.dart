@@ -6,9 +6,18 @@ class ChikitsaColors {
   static const Color grey = Colors.grey;
   static const Color white = Colors.white;
   static const Color scaffoldBackgroundColor = Colors.white;
+  static const Color black = Colors.black;
 }
 
-
+final List<Color> colorSelectorColors = [
+  const Color(0xFFF8B7D3),
+  const Color(0xFFD4C1F9),
+  const Color(0xFFFF9F9F),
+  const Color(0xFFCBF5CB),
+  const Color(0xFFFFD2A5),
+  const Color(0xFFA5E1FF),
+  const Color(0xFFFFF8A5),
+];
   //=====auth page=============//
   // static const Color white = Colors.white;
   // static const Color red = Colors.red;

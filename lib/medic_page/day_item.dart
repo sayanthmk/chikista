@@ -14,8 +14,8 @@ class DateSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              DayItem(day: 'Thr', isSelected: false),
-              DayItem(day: 'Fri', isSelected: false),
+              const DayItem(day: 'Thr', isSelected: false),
+              const DayItem(day: 'Fri', isSelected: false),
               IconButton(
                 icon: const Icon(Icons.chevron_left),
                 onPressed: () {},
@@ -39,8 +39,8 @@ class DateSection extends StatelessWidget {
                 icon: const Icon(Icons.chevron_right),
                 onPressed: () {},
               ),
-              DayItem(day: 'Sun', isSelected: false),
-              DayItem(day: 'Mon', isSelected: false),
+              const DayItem(day: 'Sun', isSelected: false),
+              const DayItem(day: 'Mon', isSelected: false),
             ],
           ),
         ],

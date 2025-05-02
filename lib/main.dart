@@ -1,7 +1,7 @@
-import 'package:chikitsa/addmedicin/add_medicin.dart';
+import 'package:chikitsa/addmedicine/add_medicin.dart';
 import 'package:chikitsa/constants/color/colors.dart';
-import 'package:chikitsa/dashboard/dashboard.dart';
-import 'package:chikitsa/dashboard/pie_chart.dart';
+import 'package:chikitsa/report_page/dashboard.dart';
+import 'package:chikitsa/report_page/pie_chart.dart';
 import 'package:chikitsa/widgets/bottom_nav_bar.dart';
 import 'package:chikitsa/medic_page/medic_page.dart';
 import 'package:chikitsa/profile/profile.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
             ColorScheme.fromSeed(seedColor: ChikitsaColors.primaryColor),
         useMaterial3: true,
       ),
-      home: const SignInScreen(),
+      home: SignInScreen(),
     );
   }
 }

@@ -71,14 +71,7 @@ class DeviceSettingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-          child: Icon(icon, color: Colors.grey),
-        ),
+        Icon(icon, color: Colors.grey),
         const SizedBox(width: 16),
         Expanded(
           child: Column(

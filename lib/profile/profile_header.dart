@@ -12,13 +12,11 @@ class ProfileHeader extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          const SizedBox(width: 16),
           Stack(
             children: [
               const CircleAvatar(
-                radius: 24,
-                backgroundImage: NetworkImage(
-                    'https://randomuser.me/api/portraits/men/32.jpg'),
+                radius: 28,
+                backgroundImage: AssetImage('assets/tst.jpeg'),
               ),
               Positioned(
                   bottom: 0,

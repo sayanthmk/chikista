@@ -1,5 +1,6 @@
-import 'package:chikitsa/addmedicin/add_medicin.dart';
-import 'package:chikitsa/dashboard/dashboard.dart';
+import 'package:chikitsa/addmedicine/add_medicin.dart';
+import 'package:chikitsa/constants/color/colors.dart';
+import 'package:chikitsa/report_page/dashboard.dart';
 import 'package:chikitsa/medic_page/medic_page.dart';
 import 'package:chikitsa/profile/profile.dart';
 import 'package:flutter/material.dart';
@@ -13,30 +14,30 @@ class BottomPage extends StatefulWidget {
 }
 
 class _BottomPageState extends State<BottomPage> {
-  final PersistentTabController _controller =
+  final PersistentTabController tabviewcontroller =
       PersistentTabController(initialIndex: 0);
 
-  List<Widget> _buildScreens() {
+  List<Widget> buildScreens() {
     return [
       ReportPage(),
       MedicationTrackerHomePage(),
-      ProfilePage(),
+      const ProfilePage(),
     ];
   }
 
-  List<PersistentBottomNavBarItem> _navBarsItems() {
+  List<PersistentBottomNavBarItem> navBarsItems() {
     return [
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.home),
         title: "Home",
-        activeColorPrimary: Colors.blue,
+        activeColorPrimary: ChikitsaColors.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: GestureDetector(
           onDoubleTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => AddMedicinePage(),
+              builder: (context) => const AddMedicinePage(),
             ));
           },
           child: const Icon(
@@ -44,14 +45,13 @@ class _BottomPageState extends State<BottomPage> {
             color: Colors.white,
           ),
         ),
-        title: "Search",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.person),
         title: "Profile",
-        activeColorPrimary: Colors.purple,
+        activeColorPrimary: ChikitsaColors.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
     ];
@@ -61,9 +61,9 @@ class _BottomPageState extends State<BottomPage> {
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      controller: _controller,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
+      controller: tabviewcontroller,
+      screens: buildScreens(),
+      items: navBarsItems(),
       backgroundColor: Colors.white,
       navBarStyle: NavBarStyle.style15,
     );

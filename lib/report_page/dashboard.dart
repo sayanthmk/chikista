@@ -1,72 +1,72 @@
 import 'package:chikitsa/constants/color/colors.dart';
-import 'package:chikitsa/medic_page/day_item.dart';
-import 'package:chikitsa/medic_page/empty_state.dart';
-import 'package:chikitsa/medic_page/header.dart';
+import 'package:chikitsa/report_page/diagram_section.dart';
+import 'package:chikitsa/report_page/history_section.dart';
+import 'package:chikitsa/report_page/today_report.dart';
 import 'package:flutter/material.dart';
 
-class MedicationTrackerHomePage extends StatelessWidget {
-  final PageController _pageController = PageController();
-  MedicationTrackerHomePage({super.key});
+class ReportPage extends StatelessWidget {
+  ReportPage({super.key});
 
-  final DateTime selectedDate = DateTime.now();
+  final int selectedDayIndex = 0;
+
+  final List<String> weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
+
+  final List<int> weekdayNumbers = [1, 2, 3, 4, 5, 6];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ChikitsaColors.scaffoldBackgroundColor,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           children: [
-            const MedicHeader(),
-            const DateSection(),
-            Expanded(
-              child: PageView(
-                controller: _pageController,
-                children: [
-                  ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    children: [
-                      buildTimeSection('Morning', '08:00 am', [
-                        MedicationItem(
-                          name: 'Calpol 500mg Tablet',
-                          instruction: 'Before Breakfast',
-                          day: 1,
-                          status: MedicationStatus.taken,
-                          color: Colors.pink.shade100,
-                        ),
-                        MedicationItem(
-                          name: 'Calpol 500mg Tablet',
-                          instruction: 'Before Breakfast',
-                          day: 27,
-                          status: MedicationStatus.missed,
-                          color: Colors.blue.shade100,
-                        ),
-                      ]),
-                      buildTimeSection('Afternoon', '02:00 pm', [
-                        MedicationItem(
-                          name: 'Calpol 500mg Tablet',
-                          instruction: 'After Food',
-                          day: 1,
-                          status: MedicationStatus.snoozed,
-                          color: Colors.purple.shade100,
-                        ),
-                      ]),
-                      buildTimeSection('Night', '09:00 pm', [
-                        MedicationItem(
-                          name: 'Calpol 500mg Tablet',
-                          instruction: 'Before Sleep',
-                          day: 3,
-                          status: MedicationStatus.left,
-                          color: Colors.red.shade100,
-                        ),
-                      ]),
-                    ],
-                  ),
-                  const EmptyStateSection(),
-                ],
+            const SizedBox(height: 16),
+            const Text(
+              'Report',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 16),
+            const TodaysReportCard(),
+            const SizedBox(height: 16),
+            PieChartSection(),
+            const SizedBox(height: 16),
+            HistorySection(),
+            const SizedBox(height: 24),
+            buildTimeSection('Morning', '08:00 am', [
+              MedicationItem(
+                preficon: Icons.abc,
+                name: 'Calpol 500mg Tablet',
+                instruction: 'Before Breakfast',
+                day: 1,
+                status: MedicationStatus.taken,
+                color: Colors.purple.shade100,
+                icon: Icons.water_drop,
+              ),
+              MedicationItem(
+                preficon: Icons.abc,
+                name: 'Calpol 500mg Tablet',
+                instruction: 'Before Breakfast',
+                day: 27,
+                status: MedicationStatus.missed,
+                color: Colors.pink.shade100,
+                icon: Icons.medication,
+              ),
+            ]),
+            buildTimeSection('Afternoon', '02:00 pm', [
+              MedicationItem(
+                preficon: Icons.abc,
+                name: 'Calpol 500mg Tablet',
+                instruction: 'After Food',
+                day: 1,
+                status: MedicationStatus.snoozed,
+                color: Colors.purple.shade100,
+                icon: Icons.water_drop,
+              ),
+            ]),
           ],
         ),
       ),
@@ -88,12 +88,12 @@ class MedicationTrackerHomePage extends StatelessWidget {
             ),
           ),
         ),
-        ...medications.map((med) => _buildMedicationCard(med)),
+        ...medications.map((med) => buildMedicationCard(med)),
       ],
     );
   }
 
-  Widget _buildMedicationCard(MedicationItem medication) {
+  Widget buildMedicationCard(MedicationItem medication) {
     IconData statusIcon;
     String statusLabel;
     Color statusColor;
@@ -114,11 +114,6 @@ class MedicationTrackerHomePage extends StatelessWidget {
         statusLabel = 'Snoozed';
         statusColor = Colors.orange;
         break;
-      case MedicationStatus.left:
-        statusIcon = Icons.notifications;
-        statusLabel = 'Left';
-        statusColor = Colors.grey;
-        break;
     }
 
     return Container(
@@ -133,7 +128,10 @@ class MedicationTrackerHomePage extends StatelessWidget {
           CircleAvatar(
             radius: 25,
             backgroundColor: medication.color,
-            child: getMedicationIcon(medication),
+            child: Icon(
+              medication.icon,
+              color: ChikitsaColors.white,
+            ),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -184,9 +182,9 @@ class MedicationTrackerHomePage extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 statusLabel,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
-                  color: statusColor,
+                  color: ChikitsaColors.black,
                 ),
               ),
             ],
@@ -195,32 +193,12 @@ class MedicationTrackerHomePage extends StatelessWidget {
       ),
     );
   }
-
-  Widget getMedicationIcon(MedicationItem medication) {
-    IconData iconData;
-
-    if (medication.color == Colors.pink.shade100) {
-      iconData = Icons.opacity;
-    } else if (medication.color == Colors.blue.shade100) {
-      iconData = Icons.medication;
-    } else if (medication.color == Colors.purple.shade100) {
-      iconData = Icons.water_drop;
-    } else {
-      iconData = Icons.edit;
-    }
-
-    return Icon(
-      iconData,
-      color: ChikitsaColors.white,
-    );
-  }
 }
 
 enum MedicationStatus {
   taken,
   missed,
   snoozed,
-  left,
 }
 
 class MedicationItem {
@@ -229,6 +207,8 @@ class MedicationItem {
   final int day;
   final MedicationStatus status;
   final Color color;
+  final IconData icon;
+  final IconData preficon;
 
   MedicationItem({
     required this.name,
@@ -236,5 +216,7 @@ class MedicationItem {
     required this.day,
     required this.status,
     required this.color,
+    required this.icon,
+    required this.preficon,
   });
 }

@@ -1,3 +1,4 @@
+import 'package:chikitsa/constants/color/colors.dart';
 import 'package:flutter/material.dart';
 
 class LinkText extends StatelessWidget {
@@ -7,12 +8,12 @@ class LinkText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Text(
         text,
         style: const TextStyle(
           fontSize: 16,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
@@ -32,11 +33,10 @@ class SectionMainTile extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, bottom: 8),
       child: Text(
         title,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: Colors.grey.shade800,
-        ),
+        style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: ChikitsaColors.black),
       ),
     );
   }

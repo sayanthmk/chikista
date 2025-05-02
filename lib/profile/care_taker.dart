@@ -18,11 +18,14 @@ class CareTakerSection extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          CareTakers(name: 'Dipa Luna'),
-          CareTakers(name: 'Roz Sodado'),
-          CareTakers(name: 'Sunny Tunis'),
+          const CareTakers(name: 'Dipa Luna'),
+          const CareTakers(name: 'Roz Sodado'),
+          const CareTakers(name: 'Sunny Tunis'),
           Column(
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 width: 48,
                 height: 48,
@@ -56,10 +59,23 @@ class CareTakers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: 25,
+        ),
         CircleAvatar(
           radius: 24,
           backgroundColor: Colors.grey.shade700,
-          child: Icon(Icons.person, color: Colors.grey.shade300),
+          child: ClipOval(
+            child: Image.asset(
+              'assets/tst.jpeg',
+              fit: BoxFit.cover,
+              width: 48,
+              height: 48,
+              errorBuilder: (context, error, stackTrace) {
+                return Icon(Icons.person, color: Colors.grey.shade300);
+              },
+            ),
+          ),
         ),
         const SizedBox(height: 8),
         Text(

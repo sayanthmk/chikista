@@ -62,10 +62,16 @@ class ProfilePage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const DeviceSettingItem(
-                      icon: Icons.bluetooth,
-                      title: 'Bluetooth',
-                      subtitle: 'Connected to device',
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const DeviceSettingItem(
+                        icon: Icons.speaker,
+                        title: 'Connect',
+                        subtitle: 'Bluetooth,WiFi',
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Container(
@@ -77,7 +83,7 @@ class ProfilePage extends StatelessWidget {
                       child: const DeviceSettingItem(
                         icon: Icons.bluetooth,
                         title: 'Bluetooth',
-                        subtitle: 'Connected to device',
+                        subtitle: 'Ring,Silent,Vibrate',
                       ),
                     ),
                   ],
@@ -85,7 +91,7 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const SectionMainTile(title: 'Caretakers: 03'),
-              CareTakerSection(),
+              const CareTakerSection(),
               const SizedBox(height: 16),
               const SectionMainTile(title: 'Doctor'),
               Container(
@@ -100,7 +106,7 @@ class ProfilePage extends StatelessWidget {
                     Container(
                       width: 48,
                       height: 48,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: ChikitsaColors.primaryColor,
                         shape: BoxShape.circle,
                       ),
@@ -178,8 +184,8 @@ class ProfilePage extends StatelessWidget {
                     'Log Out',
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: ChikitsaColors.primaryColor,
+                      fontWeight: FontWeight.w600,
+                      color: ChikitsaColors.black,
                     ),
                   ),
                 ),
