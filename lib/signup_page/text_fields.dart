@@ -34,10 +34,10 @@ class SignupTextFields extends StatelessWidget {
                   borderSide: BorderSide(color: ChikitsaColors.primaryColor),
                 ),
               ),
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              // autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Email is required';
+                  return 'Incorrect Email Address';
                 }
                 const emailRegex = r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-z]{2,7}$';
                 if (!RegExp(emailRegex).hasMatch(value)) {

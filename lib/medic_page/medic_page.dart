@@ -5,7 +5,7 @@ import 'package:chikitsa/medic_page/header.dart';
 import 'package:flutter/material.dart';
 
 class MedicationTrackerHomePage extends StatelessWidget {
-  final PageController _pageController = PageController();
+  final PageController pageController = PageController();
   MedicationTrackerHomePage({super.key});
 
   final DateTime selectedDate = DateTime.now();
@@ -22,7 +22,7 @@ class MedicationTrackerHomePage extends StatelessWidget {
             const DateSection(),
             Expanded(
               child: PageView(
-                controller: _pageController,
+                controller: pageController,
                 children: [
                   ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -88,12 +88,12 @@ class MedicationTrackerHomePage extends StatelessWidget {
             ),
           ),
         ),
-        ...medications.map((med) => _buildMedicationCard(med)),
+        ...medications.map((med) => buildMedicationCard(med)),
       ],
     );
   }
 
-  Widget _buildMedicationCard(MedicationItem medication) {
+  Widget buildMedicationCard(MedicationItem medication) {
     IconData statusIcon;
     String statusLabel;
     Color statusColor;

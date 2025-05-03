@@ -61,7 +61,7 @@ class AddMedicinePageState extends State<AddMedicinePage> {
               // Color Selection
               const AddMeSectionTile(title: 'Colour'),
               const SizedBox(height: 10),
-              ColorSelector(),
+              const ColorSelector(),
               const SizedBox(height: 20),
 
               // Type Selection

@@ -13,7 +13,6 @@ class EmptyStateSection extends StatelessWidget {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
                   'assets/empty_box.png',

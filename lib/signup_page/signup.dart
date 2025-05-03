@@ -9,8 +9,8 @@ class SignInScreen extends StatelessWidget {
   final formkey = GlobalKey<FormState>();
   SignInScreen({super.key});
 
-  final String _validEmail = 'test@example.com';
-  final String _validPassword = '123456';
+  final String validEmail = 'test@example.com';
+  final String validPassword = '123456';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,15 +85,16 @@ class SignInScreen extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (formkey.currentState!.validate()) {
-                          if (emailController.text.trim() == _validEmail &&
-                              passwordController.text.trim() ==
-                                  _validPassword) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const BottomPage(),
-                            ));
-                          }
-                        }
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const BottomPage(),
+                        ));
+                        // if (formkey.currentState!.validate()) {
+                        //   if (emailController.text.trim() == validEmail &&
+                        //       passwordController.text.trim() ==
+                        //           validPassword) {
+
+                        //   }
+                        // }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ChikitsaColors.primaryColor,
